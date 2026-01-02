@@ -1,0 +1,1335 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Solidaridad, Equidad y Tolerancia - Guía Didáctica Interactiva</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #f0f8ff 0%, #ffffff 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .contenedor-presentacion {
+            width: 100%;
+            max-width: 1000px;
+            min-height: 700px;
+            aspect-ratio: auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .diapositiva {
+            display: none;
+            width: 100%;
+            height: 100%;
+            padding: 45px 55px;
+            animation: fadeIn 0.5s ease-in;
+            overflow-y: auto;
+            min-height: 700px;
+        }
+
+        .diapositiva.activa {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* COLORES ESCOLARIS */
+        .naranja { color: #db6015; }
+        .amarillo { color: #f7be00; }
+        .azul-oscuro { color: #244b5a; }
+        .rojo-ladrillo { color: #993921; }
+
+        .bg-naranja { background-color: #db6015; }
+        .bg-amarillo { background-color: #f7be00; }
+        .bg-azul-oscuro { background-color: #244b5a; }
+        .bg-rojo-ladrillo { background-color: #993921; }
+
+        /* PORTADA */
+        .portada {
+            background: linear-gradient(135deg, #db6015 0%, #f7be00 100%);
+            color: white;
+            text-align: center;
+            justify-content: space-around !important;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .portada::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 20% 50%, rgba(244, 196, 89, 0.3), transparent);
+            pointer-events: none;
+        }
+
+        .portada > * {
+            position: relative;
+            z-index: 1;
+        }
+
+        .portada h1 {
+            font-size: 50px;
+            font-weight: bold;
+            margin-bottom: 15px;
+            color: #ffffff;
+            text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.3);
+            letter-spacing: 2px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .portada h2 {
+            font-size: 38px;
+            margin-bottom: 25px;
+            color: #ffffff;
+            font-weight: bold;
+            text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.3);
+            letter-spacing: 1.5px;
+            line-height: 1.3;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .portada-info {
+            font-size: 18px;
+            margin: 12px 0;
+            color: #ffffff;
+            background: rgba(255, 255, 255, 0.15);
+            padding: 12px 25px;
+            border-radius: 8px;
+            font-weight: 500;
+            display: inline-block;
+        }
+
+        .portada-ilustracion {
+            font-size: 90px;
+            margin: 20px 0;
+            animation: bounce 2s infinite;
+            filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.1));
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-12px); }
+        }
+
+        .portada-mensaje {
+            font-size: 20px;
+            font-style: italic;
+            margin-top: 25px;
+            background: rgba(255, 255, 255, 0.15);
+            padding: 20px 30px;
+            border-radius: 10px;
+            border-left: 5px solid #ffffff;
+            color: #ffffff;
+            font-weight: 500;
+            line-height: 1.6;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        }
+
+        /* TÍTULOS Y CONTENIDO */
+        h1 {
+            color: #244b5a;
+            font-size: 38px;
+            margin-bottom: 30px;
+            margin-top: 5px;
+            border-bottom: 4px solid #db6015;
+            padding-bottom: 18px;
+            letter-spacing: 0.5px;
+            line-height: 1.2;
+            font-weight: bold;
+        }
+
+        h2 {
+            color: #db6015;
+            font-size: 28px;
+            margin-bottom: 20px;
+            font-weight: bold;
+            letter-spacing: 0.5px;
+        }
+
+        h3 {
+            color: #244b5a;
+            font-size: 22px;
+            margin-top: 20px;
+            margin-bottom: 12px;
+            font-weight: 600;
+        }
+
+        p {
+            color: #333;
+            font-size: 18px;
+            line-height: 1.8;
+            margin-bottom: 16px;
+            letter-spacing: 0.3px;
+        }
+
+        /* OBJETIVOS */
+        .objetivo {
+            background: linear-gradient(90deg, #f0f8ff 0%, #e6f2ff 100%);
+            border-left: 5px solid #db6015;
+            padding: 18px 22px;
+            margin: 14px 0;
+            border-radius: 8px;
+            font-size: 17px;
+            line-height: 1.6;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
+        }
+
+        .objetivo::before {
+            content: "✓ ";
+            color: #28a745;
+            font-weight: bold;
+            font-size: 22px;
+            margin-right: 8px;
+        }
+
+        /* PALABRAS CLAVE */
+        .palabra-clave {
+            background: linear-gradient(135deg, #f7be00 0%, #ffc844 100%);
+            border-radius: 12px;
+            padding: 28px;
+            margin: 22px 0;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(247, 190, 0, 0.2);
+        }
+
+        .palabra-clave-titulo {
+            color: #244b5a;
+            font-weight: bold;
+            font-size: 26px;
+            margin: 12px 0 10px 0;
+            letter-spacing: 1px;
+        }
+
+        .palabra-clave-definicion {
+            color: #333;
+            font-size: 17px;
+            line-height: 1.7;
+            margin: 0;
+        }
+
+        /* CUADROS DE CONTENIDO */
+        .cuadro-contenido {
+            background: #f0f8ff;
+            border-left: 5px solid #db6015;
+            padding: 26px;
+            margin: 20px 0;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+        }
+
+        .cuadro-contenido p {
+            margin-bottom: 12px;
+            font-size: 17px;
+        }
+
+        .cuadro-contenido p:last-child {
+            margin-bottom: 0;
+        }
+
+        /* PREGUNTAS REFLEXIVAS */
+        .pregunta-reflexiva {
+            background: linear-gradient(90deg, #ffe6d5 0%, #ffd9c0 100%);
+            border-radius: 10px;
+            padding: 22px;
+            margin: 18px 0;
+            border-left: 5px solid #db6015;
+            box-shadow: 0 2px 8px rgba(219, 96, 21, 0.1);
+        }
+
+        .pregunta-reflexiva p {
+            color: #244b5a;
+            font-size: 17px;
+            font-weight: 500;
+            margin: 0;
+            line-height: 1.6;
+        }
+
+        /* ACTIVIDADES */
+        .actividad-contenedor {
+            background: #ffffff;
+            border: 3px solid #f7be00;
+            border-radius: 12px;
+            padding: 28px;
+            margin: 18px 0;
+            box-shadow: 0 4px 12px rgba(247, 190, 0, 0.15);
+        }
+
+        .actividad-titulo {
+            color: #db6015;
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 18px;
+            padding-bottom: 12px;
+            border-bottom: 2px solid #f7be00;
+        }
+
+        .opciones-actividad {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin: 18px 0;
+        }
+
+        .opcion-actividad {
+            background: #f0f8ff;
+            border: 2px solid #ccc;
+            padding: 14px 18px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 16px;
+            font-weight: 500;
+            line-height: 1.4;
+        }
+
+        .opcion-actividad:hover {
+            background: #e6f2ff;
+            border-color: #db6015;
+            transform: translateX(6px);
+            box-shadow: 0 3px 8px rgba(219, 96, 21, 0.15);
+        }
+
+        .opcion-actividad.seleccionada {
+            background: #db6015;
+            color: white;
+            border-color: #db6015;
+        }
+
+        .retroalimentacion {
+            margin-top: 18px;
+            padding: 20px;
+            border-radius: 10px;
+            display: none;
+            font-size: 16px;
+            line-height: 1.6;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .retroalimentacion.visible {
+            display: block;
+            animation: slideDown 0.4s ease;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .retroalimentacion.correcta {
+            background: linear-gradient(90deg, #d4edda 0%, #c3e6cb 100%);
+            border-left: 5px solid #28a745;
+            color: #155724;
+            font-weight: 500;
+        }
+
+        .retroalimentacion.incorrecta {
+            background: linear-gradient(90deg, #f8d7da 0%, #f5c6cb 100%);
+            border-left: 5px solid #dc3545;
+            color: #721c24;
+            font-weight: 500;
+        }
+
+        .retroalimentacion.orientativa {
+            background: linear-gradient(90deg, #fff3cd 0%, #ffeaa7 100%);
+            border-left: 5px solid #f7be00;
+            color: #856404;
+            font-weight: 500;
+        }
+
+        .boton {
+            background: linear-gradient(90deg, #db6015 0%, #c84f0a 100%);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 7px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 14px;
+            box-shadow: 0 3px 10px rgba(219, 96, 21, 0.2);
+        }
+
+        .boton:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(219, 96, 21, 0.35);
+        }
+
+        .boton-secundario {
+            background: linear-gradient(90deg, #f7be00 0%, #e6a800 100%);
+            color: #244b5a;
+        }
+
+        /* ELEMENTOS VISUALES */
+        .icono {
+            font-size: 44px;
+            margin: 12px 0;
+        }
+
+        .ilustracion-grande {
+            font-size: 100px;
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .imagen-interactiva {
+            background: linear-gradient(135deg, #f0f8ff 0%, #e6f2ff 100%);
+            border: 3px solid #db6015;
+            border-radius: 12px;
+            padding: 40px 30px;
+            text-align: center;
+            margin: 18px 0;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        }
+
+        .imagen-interactiva:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 8px 20px rgba(219, 96, 21, 0.2);
+            background: linear-gradient(135deg, #e6f2ff 0%, #d9ecff 100%);
+        }
+
+        .imagen-interactiva p {
+            color: #db6015;
+            font-weight: bold;
+            font-size: 16px;
+            margin-top: 12px;
+            margin-bottom: 0;
+        }
+
+        /* GRILLA DE ELEMENTOS */
+        .grilla-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 18px;
+            margin: 18px 0;
+        }
+
+        .elemento-grilla {
+            background: #f0f8ff;
+            border: 3px solid #db6015;
+            border-radius: 10px;
+            padding: 22px;
+            text-align: center;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.06);
+            transition: all 0.3s ease;
+        }
+
+        .elemento-grilla:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 6px 15px rgba(219, 96, 21, 0.1);
+        }
+
+        .elemento-grilla h3 {
+            margin-top: 8px;
+            margin-bottom: 10px;
+        }
+
+        .elemento-grilla p {
+            font-size: 15px;
+            line-height: 1.5;
+        }
+
+        .elemento-grilla .icono {
+            font-size: 48px;
+            margin: 6px 0;
+        }
+
+        /* NAVEGACIÓN */
+        .controles-navegacion {
+            position: absolute;
+            bottom: 30px;
+            left: 0;
+            right: 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 40px;
+        }
+
+        .flecha {
+            background: linear-gradient(135deg, #db6015 0%, #c84f0a 100%);
+            color: white;
+            border: none;
+            width: 52px;
+            height: 52px;
+            border-radius: 50%;
+            font-size: 26px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 12px rgba(219, 96, 21, 0.25);
+        }
+
+        .flecha:hover {
+            transform: scale(1.12);
+            box-shadow: 0 8px 20px rgba(219, 96, 21, 0.4);
+        }
+
+        .flecha:active {
+            transform: scale(0.95);
+        }
+
+        .indicador-diapositivas {
+            color: #244b5a;
+            font-weight: bold;
+            font-size: 16px;
+            background: #f7be00;
+            padding: 8px 16px;
+            border-radius: 25px;
+            box-shadow: 0 3px 10px rgba(247, 190, 0, 0.2);
+        }
+
+        /* CIERRE Y RECONOCIMIENTO */
+        .cierre {
+            background: linear-gradient(135deg, #f7be00 0%, #ffc844 100%);
+            text-align: center;
+            justify-content: space-around !important;
+        }
+
+        .cierre h1 {
+            color: #244b5a;
+            border-bottom: 4px solid #db6015;
+            font-size: 38px;
+            margin-bottom: 20px;
+        }
+
+        .sello-logro {
+            font-size: 90px;
+            animation: pulso 2s infinite;
+            margin: 10px 0;
+        }
+
+        @keyframes pulso {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.12); }
+        }
+
+        .mensaje-felicitacion {
+            font-size: 24px;
+            color: #244b5a;
+            font-weight: bold;
+            margin: 18px 0;
+            line-height: 1.5;
+        }
+
+        /* METACOGNICIÓN */
+        .reflexion-final {
+            background: linear-gradient(135deg, #d4edda 0%, #c3e6cb 100%);
+            border: 3px solid #28a745;
+            border-radius: 12px;
+            padding: 24px;
+            margin: 18px 0;
+            box-shadow: 0 4px 12px rgba(40, 167, 69, 0.15);
+        }
+
+        .reflexion-final h3 {
+            color: #155724;
+            font-size: 18px;
+            margin-bottom: 12px;
+            font-weight: 600;
+        }
+
+        .reflexion-final p {
+            color: #155724;
+            font-size: 16px;
+            font-weight: 500;
+            margin-bottom: 10px;
+        }
+
+        .espacio-reflexion {
+            background: white;
+            border: 2px dashed #28a745;
+            border-radius: 8px;
+            padding: 30px;
+            min-height: 70px;
+            margin: 12px 0;
+            color: #999;
+            text-align: center;
+            font-style: italic;
+            font-size: 14px;
+        }
+
+        /* LISTA DE CLASIFICACIÓN */
+        .contenedor-clasificacion {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .categoria-clasificacion {
+            background: #f0f8ff;
+            border: 2px solid #db6015;
+            border-radius: 8px;
+            padding: 20px;
+            min-height: 200px;
+        }
+
+        .categoria-titulo {
+            font-weight: bold;
+            color: #db6015;
+            margin-bottom: 15px;
+            font-size: 18px;
+        }
+
+        .elemento-clasificable {
+            background: white;
+            border: 2px solid #ccc;
+            padding: 12px;
+            margin: 8px 0;
+            border-radius: 6px;
+            cursor: move;
+            font-size: 14px;
+        }
+
+        .elemento-clasificable.colocado {
+            background: linear-gradient(90deg, #d4edda 0%, #c3e6cb 100%);
+            border-color: #28a745;
+            color: #155724;
+        }
+
+        /* REPASO FINAL */
+        .pregunta-repaso {
+            background: #f0f8ff;
+            border: 3px solid #db6015;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 16px 0;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.06);
+            clear: both;
+        }
+
+        .numero-pregunta {
+            background: linear-gradient(135deg, #db6015 0%, #c84f0a 100%);
+            color: white;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 16px;
+            margin-right: 12px;
+            float: left;
+            box-shadow: 0 3px 8px rgba(219, 96, 21, 0.2);
+        }
+
+        /* MODAL PARA EXPLORAR */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            animation: fadeIn 0.3s ease;
+        }
+
+        .modal.visible {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-contenido {
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+            max-width: 500px;
+            text-align: center;
+            position: relative;
+            animation: slideIn 0.3s ease;
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateY(-30px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .modal-titulo {
+            color: #db6015;
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #f7be00;
+            padding-bottom: 15px;
+        }
+
+        .modal-lista {
+            text-align: left;
+            margin: 20px 0;
+        }
+
+        .modal-lista p {
+            color: #333;
+            font-size: 16px;
+            margin: 10px 0;
+            padding-left: 25px;
+            position: relative;
+        }
+
+        .modal-lista p::before {
+            content: "✓";
+            color: #28a745;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+        }
+
+        .modal-cerrar {
+            background: linear-gradient(90deg, #db6015 0%, #c84f0a 100%);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 6px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .modal-cerrar:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(219, 96, 21, 0.3);
+        }
+        @media (max-width: 768px) {
+            .contenedor-presentacion {
+                padding: 30px;
+            }
+
+            .diapositiva {
+                padding: 30px;
+            }
+
+            .grilla-2 {
+                grid-template-columns: 1fr;
+            }
+
+            .controles-navegacion {
+                padding: 0 20px;
+            }
+
+            .flecha {
+                width: 40px;
+                height: 40px;
+                font-size: 20px;
+            }
+
+            .portada h1 {
+                font-size: 32px;
+            }
+
+            .portada h2 {
+                font-size: 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="contenedor-presentacion">
+
+    <!-- MODAL PARA EXPLORAR -->
+    <div id="modal-explorar" class="modal">
+        <div class="modal-contenido">
+            <div class="modal-titulo" id="modal-titulo">Ejemplos de solidaridad</div>
+            <div class="modal-lista" id="modal-lista">
+                <p>Responder en el foro de dudas</p>
+                <p>Colaborar en grupos de estudio</p>
+                <p>Compartir apuntes y recursos</p>
+                <p>Apoyar en videoconferencias</p>
+                <p>Participar activamente</p>
+            </div>
+            <button class="modal-cerrar" onclick="cerrarModal()">Entendido ✓</button>
+        </div>
+    </div>
+
+    <!-- DIAPOSITIVA 1: PORTADA -->
+    <div class="diapositiva activa">
+        <div class="portada">
+            <div>
+                <div class="portada-ilustracion">🤝</div>
+                <h1>Solidaridad, Equidad y Tolerancia</h1>
+                <h2>Valores para una mejor convivencia</h2>
+                <div class="portada-info">
+                    <p><strong>Lección 1</strong> | Formación Ciudadana</p>
+                    <p><strong>Grado:</strong> 6º de Primaria</p>
+                </div>
+                <div class="portada-mensaje">
+                    "Cuando nos ayudamos mutuamente, construimos un mundo mejor juntos"
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- DIAPOSITIVA 2: OBJETIVOS DE APRENDIZAJE -->
+    <div class="diapositiva">
+        <h1>Objetivos de aprendizaje</h1>
+        <div class="objetivo">
+            Entender qué es la solidaridad y reconocer cómo podemos ayudar a otros en nuestro entorno.
+        </div>
+        <div class="objetivo">
+            Comprender el significado de equidad y por qué no todos reciben lo mismo, pero sí lo que necesitan.
+        </div>
+        <div class="objetivo">
+            Practicar la tolerancia respetando las diferencias de los demás y valorando su diversidad.
+        </div>
+    </div>
+
+    <!-- DIAPOSITIVA 3: ACTIVACIÓN DE CONOCIMIENTOS PREVIOS -->
+    <div class="diapositiva">
+        <h1>Activación de conocimientos previos</h1>
+        <p style="font-size: 20px; font-weight: 500; color: #244b5a; margin-bottom: 30px;">Reflexiona sobre estas preguntas:</p>
+        
+        <div class="pregunta-reflexiva">
+            <div class="icono">❓</div>
+            <p>¿Alguna vez has ayudado a alguien que lo necesitaba? ¿Cómo te sentiste?</p>
+        </div>
+
+        <div class="pregunta-reflexiva">
+            <div class="icono">❓</div>
+            <p>¿Conoces a personas diferentes a ti? ¿Qué tienen de especial?</p>
+        </div>
+
+        <div class="pregunta-reflexiva">
+            <div class="icono">❓</div>
+            <p>¿Crees que es justo que todos reciban exactamente lo mismo en la escuela?</p>
+        </div>
+    </div>
+
+    <!-- DIAPOSITIVA 4: PALABRA CLAVE 1 - SOLIDARIDAD -->
+    <div class="diapositiva">
+        <h1>Palabra clave: Solidaridad</h1>
+        
+        <div class="palabra-clave">
+            <div class="icono">🤲</div>
+            <div class="palabra-clave-titulo">SOLIDARIDAD</div>
+            <div class="palabra-clave-definicion">
+                Es el apoyo y ayuda que damos a otras personas cuando la necesitan. Significa estar juntos, compartir y cuidarnos mutuamente como una comunidad.
+            </div>
+        </div>
+
+        <div class="cuadro-contenido">
+            <h3>Ejemplos en tu vida diaria:</h3>
+            <p>✓ Ayudar a un compañero en un foro o chat con sus dudas</p>
+            <p>✓ Compartir apuntes o recursos con alguien que no pudo conectarse</p>
+            <p>✓ Consolar a un amigo que está triste en un mensaje</p>
+            <p>✓ Invitar a alguien a trabajar contigo en un proyecto grupal online</p>
+        </div>
+    </div>
+
+    <!-- DIAPOSITIVA 5: PALABRA CLAVE 2 - EQUIDAD -->
+    <div class="diapositiva">
+        <h1>Palabra clave: Equidad</h1>
+        
+        <div class="palabra-clave">
+            <div class="icono">⚖️</div>
+            <div class="palabra-clave-titulo">EQUIDAD</div>
+            <div class="palabra-clave-definicion">
+                Es dar a cada persona lo que necesita, aunque no sea lo mismo para todos. Significa ser justo considerando las diferencias de cada uno.
+            </div>
+        </div>
+
+        <div class="cuadro-contenido">
+            <h3>Equidad vs. Igualdad:</h3>
+            <p><strong>Igualdad:</strong> Dar lo mismo a todos (1 lápiz para cada estudiante)</p>
+            <p><strong>Equidad:</strong> Dar lo que cada uno necesita (un lápiz a quien puede escribir, una grabadora a quien tiene dificultades visuales)</p>
+        </div>
+    </div>
+
+    <!-- DIAPOSITIVA 6: PALABRA CLAVE 3 - TOLERANCIA -->
+    <div class="diapositiva">
+        <h1>Palabra clave: Tolerancia</h1>
+        
+        <div class="palabra-clave">
+            <div class="icono">👥</div>
+            <div class="palabra-clave-titulo">TOLERANCIA</div>
+            <div class="palabra-clave-definicion">
+                Es respetar y aceptar a las personas aunque sean diferentes a nosotros. Incluye aceptar sus ideas, creencias, costumbres y características físicas.
+            </div>
+        </div>
+
+        <div class="cuadro-contenido">
+            <h3>Qué NO es tolerancia:</h3>
+            <p>✗ Fingir que las diferencias no existen</p>
+            <p>✗ Burlar o excluir a quien es diferente</p>
+            <p>✗ Obligar a otros a ser como nosotros</p>
+            <p><strong style="color: #28a745;">✓ ES: Valorar y aprender de las diferencias</strong></p>
+        </div>
+    </div>
+
+    <!-- DIAPOSITIVA 7: CONTENIDO - SOLIDARIDAD EN ACCIÓN -->
+    <div class="diapositiva">
+        <h1>Solidaridad en acción</h1>
+        
+        <div class="cuadro-contenido">
+            <h3>¿Cómo podemos ser solidarios?</h3>
+            <p><strong style="color: #db6015;">En la familia:</strong> Ayudar en las tareas del hogar, cuidar a hermanos menores, apoyar cuando alguien está enfermo.</p>
+            <p><strong style="color: #db6015;">En la escuela online:</strong> Responder mensajes con dudas, compartir recursos educativos, participar en grupos de estudio, ayudar a compañeros en foros y videoconferencias.</p>
+            <p><strong style="color: #db6015;">En la comunidad:</strong> Colaborar en proyectos sociales virtuales, participar en iniciativas online, ser voluntario en actividades remotas.</p>
+        </div>
+
+        <div class="imagen-interactiva" onclick="mostrarDetalles(this, 'Ejemplos de solidaridad en educación online')">
+            <div class="icono">👥</div>
+            <p>Haz clic para explorar</p>
+        </div>
+    </div>
+
+    <!-- DIAPOSITIVA 8: CONTENIDO - EQUIDAD EN PRÁCTICA -->
+    <div class="diapositiva">
+        <h1>Equidad en la práctica</h1>
+        
+        <div class="grilla-2">
+            <div class="elemento-grilla">
+                <div class="icono">🚗</div>
+                <h3>Ejemplo 1</h3>
+                <p>Un niño sin piernas necesita una silla de ruedas para ir a la escuela. Un niño con piernas necesita zapatos. Es equitativo dar a cada uno lo que necesita.</p>
+            </div>
+            <div class="elemento-grilla">
+                <div class="icono">📖</div>
+                <h3>Ejemplo 2</h3>
+                <p>Si dos estudiantes tienen dificultades diferentes en lectura, uno podría leer más lentamente y otro podría necesitar un material en otro idioma. La equidad es adecuar el apoyo.</p>
+            </div>
+        </div>
+
+        <div class="cuadro-contenido">
+            <p style="text-align: center; font-size: 18px; color: #244b5a;"><strong>En resumen:</strong> La equidad reconoce nuestras diferencias y nos asegura que todos tengamos las mismas oportunidades de aprender y crecer.</p>
+        </div>
+    </div>
+
+    <!-- DIAPOSITIVA 9: CONTENIDO - TOLERANCIA EN DIVERSIDAD -->
+    <div class="diapositiva">
+        <h1>Tolerancia y diversidad</h1>
+        
+        <p style="font-size: 18px; color: #333; margin-bottom: 20px;">Somos diversos en muchas formas:</p>
+
+        <div class="grilla-2">
+            <div class="elemento-grilla">
+                <div class="icono">🎨</div>
+                <p><strong>Origen y cultura:</strong> Familia, costumbres, idioma, tradiciones</p>
+            </div>
+            <div class="elemento-grilla">
+                <div class="icono">🧠</div>
+                <p><strong>Capacidades:</strong> Algunos aprenden diferente, con distintas fortalezas</p>
+            </div>
+            <div class="elemento-grilla">
+                <div class="icono">❤️</div>
+                <p><strong>Gustos e intereses:</strong> Música, deportes, hobbies, amigos</p>
+            </div>
+            <div class="elemento-grilla">
+                <div class="icono">🌍</div>
+                <p><strong>Creencias y religión:</strong> Valores y prácticas espirituales diferentes</p>
+            </div>
+        </div>
+
+        <div class="cuadro-contenido">
+            <p style="text-align: center; color: #244b5a;"><strong>La tolerancia significa valorar estas diferencias como algo positivo que nos enriquece como personas.</strong></p>
+        </div>
+    </div>
+
+    <!-- DIAPOSITIVA 10: ACTIVIDAD 1 - COMPRENSIÓN -->
+    <div class="diapositiva">
+        <h1>Actividad 1: Comprensión del tema</h1>
+        
+        <div class="actividad-contenedor">
+            <div class="actividad-titulo">❓ ¿Cuál es la diferencia entre igualdad y equidad?</div>
+            
+            <div class="opciones-actividad">
+                <div class="opcion-actividad" onclick="verificarRespuesta(event, 1, 'incorrecta')">
+                    A) Igualdad es dar lo mismo a todos y equidad es dar más a los que piden
+                </div>
+                <div class="opcion-actividad" onclick="verificarRespuesta(event, 1, 'correcta')">
+                    B) Igualdad es dar lo mismo a todos e equidad es dar lo que cada uno necesita
+                </div>
+                <div class="opcion-actividad" onclick="verificarRespuesta(event, 1, 'incorrecta')">
+                    C) Son exactamente lo mismo, solo cambia el nombre
+                </div>
+                <div class="opcion-actividad" onclick="verificarRespuesta(event, 1, 'incorrecta')">
+                    D) Igualdad es mejor que equidad para la escuela
+                </div>
+            </div>
+
+            <div class="retroalimentacion" id="feedback-act1">
+                <strong id="titulo-feedback-act1"></strong>
+                <p id="texto-feedback-act1"></p>
+                <button class="boton" onclick="reintentar(1)">Intentar nuevamente</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- DIAPOSITIVA 11: ACTIVIDAD 2 - CLASIFICACIÓN -->
+    <div class="diapositiva">
+        <h1>Actividad 2: Clasifica las acciones</h1>
+        
+        <div class="actividad-contenedor">
+            <div class="actividad-titulo">🎯 Relaciona cada acción con el valor correspondiente</div>
+            
+            <div style="margin: 20px 0;">
+                <div class="pregunta-repaso" style="margin-bottom: 10px;">
+                    <strong>1. Compartir tus apuntes con un compañero que faltó a clase</strong>
+                    <div class="opciones-actividad" style="margin-top: 10px;">
+                        <div class="opcion-actividad" onclick="verificarClasificacion(event, 1, 'solidaridad')">Solidaridad</div>
+                        <div class="opcion-actividad" onclick="verificarClasificacion(event, 1, 'equidad')">Equidad</div>
+                        <div class="opcion-actividad" onclick="verificarClasificacion(event, 1, 'tolerancia')">Tolerancia</div>
+                    </div>
+                    <div class="retroalimentacion" id="feedback-clas1"></div>
+                </div>
+
+                <div class="pregunta-repaso" style="margin-bottom: 10px;">
+                    <strong>2. Respetar la religión y tradiciones de tus amigos aunque sean diferentes</strong>
+                    <div class="opciones-actividad" style="margin-top: 10px;">
+                        <div class="opcion-actividad" onclick="verificarClasificacion(event, 2, 'solidaridad')">Solidaridad</div>
+                        <div class="opcion-actividad" onclick="verificarClasificacion(event, 2, 'equidad')">Equidad</div>
+                        <div class="opcion-actividad" onclick="verificarClasificacion(event, 2, 'tolerancia')">Tolerancia</div>
+                    </div>
+                    <div class="retroalimentacion" id="feedback-clas2"></div>
+                </div>
+
+                <div class="pregunta-repaso">
+                    <strong>3. Dar más tiempo a un estudiante que tiene dificultades en matemáticas para resolver un problema</strong>
+                    <div class="opciones-actividad" style="margin-top: 10px;">
+                        <div class="opcion-actividad" onclick="verificarClasificacion(event, 3, 'solidaridad')">Solidaridad</div>
+                        <div class="opcion-actividad" onclick="verificarClasificacion(event, 3, 'equidad')">Equidad</div>
+                        <div class="opcion-actividad" onclick="verificarClasificacion(event, 3, 'tolerancia')">Tolerancia</div>
+                    </div>
+                    <div class="retroalimentacion" id="feedback-clas3"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- DIAPOSITIVA 12: ACTIVIDAD 3 - JUEGO EDUCATIVO -->
+    <div class="diapositiva">
+        <h1>Actividad 3: Juego - Situaciones de convivencia</h1>
+        
+        <div class="actividad-contenedor">
+            <div class="actividad-titulo">🎮 Selecciona la mejor respuesta</div>
+            
+            <div style="margin: 20px 0;">
+                <div class="pregunta-repaso" style="margin-bottom: 15px;">
+                    <strong>Situación 1:</strong> Un compañero se burla del acento de un estudiante nuevo. ¿Qué debes hacer?
+                    <div class="opciones-actividad" style="margin-top: 10px;">
+                        <div class="opcion-actividad" onclick="verificarSituacion(event, 1, 'correcta')">Defender al compañero nuevo y pedir respeto</div>
+                        <div class="opcion-actividad" onclick="verificarSituacion(event, 1, 'incorrecta')">Unirte a la broma para que no te excluyan</div>
+                        <div class="opcion-actividad" onclick="verificarSituacion(event, 1, 'incorrecta')">Ignorar la situación como si no hubiese sucedido</div>
+                    </div>
+                    <div class="retroalimentacion" id="feedback-sit1"></div>
+                </div>
+
+                <div class="pregunta-repaso">
+                    <strong>Situación 2:</strong> En una videoconferencia de clase, ves que un compañero no participa porque tiene inseguridad con su micrófono. Su cámara tampoco está encendida. ¿Cuál es la acción más solidaria?
+                    <div class="opciones-actividad" style="margin-top: 10px;">
+                        <div class="opcion-actividad" onclick="verificarSituacion(event, 2, 'correcta')">Invitarlo a participar en el chat o ofrecerle hacerlo por escrito</div>
+                        <div class="opcion-actividad" onclick="verificarSituacion(event, 2, 'incorrecta')">No hacer nada, es su problema si no participa</div>
+                        <div class="opcion-actividad" onclick="verificarSituacion(event, 2, 'incorrecta')">Obligarlo a encender micrófono y cámara</div>
+                    </div>
+                    <div class="retroalimentacion" id="feedback-sit2"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- DIAPOSITIVA 13: APLICACIÓN PRÁCTICA -->
+    <div class="diapositiva">
+        <h1>Aplicación práctica en tu vida</h1>
+        
+        <div class="cuadro-contenido">
+            <h3>Reto de la semana 🌟</h3>
+            <p>Elige <strong>al menos una de estas acciones</strong> para practicar solidaridad, equidad o tolerancia:</p>
+        </div>
+
+        <div class="elemento-grilla" style="margin: 20px 0;">
+            <div class="icono">🤝</div>
+            <p><strong>Solidaridad:</strong> Ayuda a un compañero en el foro, responde sus dudas en chat, comparte un recurso que te fue útil</p>
+        </div>
+
+        <div class="elemento-grilla" style="margin: 20px 0;">
+            <div class="icono">⚖️</div>
+            <p><strong>Equidad:</strong> Apoya a alguien que tiene dificultad con tecnología, ayuda a quien no entiende rápido la materia, sé paciente con diferentes ritmos</p>
+        </div>
+
+        <div class="elemento-grilla" style="margin: 20px 0;">
+            <div class="icono">👥</div>
+            <p><strong>Tolerancia:</strong> Aprende sobre la cultura de un compañero diferente, respeta sus formas de trabajar, valora sus aportes en clase</p>
+        </div>
+
+        <div class="pregunta-reflexiva">
+            <p>¿Cuál de estas acciones vas a realizar esta semana? Reflexiona sobre cómo te sentirás después.</p>
+        </div>
+    </div>
+
+    <!-- DIAPOSITIVA 14: REPASO FINAL -->
+    <div class="diapositiva">
+        <h1>Repaso final 📋</h1>
+        
+        <div style="font-size: 16px;">
+            <div class="pregunta-repaso" style="margin-bottom: 15px;">
+                <div class="numero-pregunta">1</div>
+                <strong>¿Qué es la solidaridad?</strong>
+                <div class="opciones-actividad" style="margin-top: 10px; margin-left: 50px;">
+                    <div class="opcion-actividad" onclick="verificarRepaso(event, 'r1', 'correcta')">Apoyo y ayuda que damos a otros cuando lo necesitan</div>
+                    <div class="opcion-actividad" onclick="verificarRepaso(event, 'r1', 'incorrecta')">Estar de acuerdo con todo lo que los demás dicen</div>
+                    <div class="opcion-actividad" onclick="verificarRepaso(event, 'r1', 'incorrecta')">No mezclar nuestras cosas con las de otros</div>
+                </div>
+                <div class="retroalimentacion" id="feedback-r1"></div>
+            </div>
+
+            <div class="pregunta-repaso" style="margin-bottom: 15px;">
+                <div class="numero-pregunta">2</div>
+                <strong>¿Por qué la equidad es importante en la escuela?</strong>
+                <div class="opciones-actividad" style="margin-top: 10px; margin-left: 50px;">
+                    <div class="opcion-actividad" onclick="verificarRepaso(event, 'r2', 'correcta')">Porque asegura que todos tengan lo que necesitan para aprender</div>
+                    <div class="opcion-actividad" onclick="verificarRepaso(event, 'r2', 'incorrecta')">Porque todos deben recibir exactamente lo mismo</div>
+                    <div class="opcion-actividad" onclick="verificarRepaso(event, 'r2', 'incorrecta')">Porque no hay diferencias entre los estudiantes</div>
+                </div>
+                <div class="retroalimentacion" id="feedback-r2"></div>
+            </div>
+
+            <div class="pregunta-repaso">
+                <div class="numero-pregunta">3</div>
+                <strong>La tolerancia significa...</strong>
+                <div class="opciones-actividad" style="margin-top: 10px; margin-left: 50px;">
+                    <div class="opcion-actividad" onclick="verificarRepaso(event, 'r3', 'correcta')">Respetar y aceptar a las personas aunque sean diferentes</div>
+                    <div class="opcion-actividad" onclick="verificarRepaso(event, 'r3', 'incorrecta')">Pretender que no existen las diferencias</div>
+                    <div class="opcion-actividad" onclick="verificarRepaso(event, 'r3', 'incorrecta')">Permitir que otros hagan lo que quieran sin importar el daño</div>
+                </div>
+                <div class="retroalimentacion" id="feedback-r3"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- DIAPOSITIVA 15: METACOGNICIÓN -->
+    <div class="diapositiva">
+        <h1>Reflexión sobre tu aprendizaje 🤔</h1>
+        
+        <div class="reflexion-final">
+            <h3>Preguntas para reflexionar:</h3>
+            <p><strong>¿Qué aprendí hoy?</strong></p>
+            <div class="espacio-reflexion">Tu respuesta aquí...</div>
+            
+            <p style="margin-top: 25px;"><strong>¿Cuál de los tres valores (solidaridad, equidad, tolerancia) creo que debo practicar más?</strong></p>
+            <div class="espacio-reflexion">Tu respuesta aquí...</div>
+            
+            <p style="margin-top: 25px;"><strong>¿Cómo puedo aplicar estos valores en mi vida diaria?</strong></p>
+            <div class="espacio-reflexion">Tu respuesta aquí...</div>
+        </div>
+
+        <div style="background: #e6f2ff; padding: 15px; border-radius: 8px; margin-top: 25px; text-align: center;">
+            <p style="color: #244b5a; font-size: 16px;">💭 Tómate un momento para escribir tus respuestas. Esta reflexión te ayudará a recordar mejor lo aprendido.</p>
+        </div>
+    </div>
+
+    <!-- DIAPOSITIVA 16: CIERRE Y RECONOCIMIENTO -->
+    <div class="diapositiva">
+        <div class="cierre">
+            <div>
+                <h1 style="border: none; color: #244b5a;">¡Felicidades! 🎉</h1>
+                <div class="sello-logro">⭐</div>
+                <div class="mensaje-felicitacion">
+                    Has completado la lección sobre<br>
+                    <strong style="color: #db6015;">Solidaridad, Equidad y Tolerancia</strong>
+                </div>
+                <div class="cuadro-contenido" style="background: white; border-left: 4px solid #f7be00; margin-top: 30px;">
+                    <p style="color: #244b5a; font-size: 18px;">
+                        Has aprendido valores fundamentales para una convivencia positiva y respetuosa. Ahora tienes las herramientas para construir un entorno más justo, solidario y tolerante.
+                    </p>
+                    <p style="color: #db6015; font-weight: bold; font-size: 18px; margin-top: 20px;">
+                        🌟 Recuerda practicar estos valores cada día 🌟
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- CONTROLES DE NAVEGACIÓN -->
+    <div class="controles-navegacion">
+        <button class="flecha" onclick="diapositivaAnterior()">⬅️</button>
+        <div class="indicador-diapositivas">
+            <span id="diapositiva-actual">1</span> / <span id="total-diapositivas">16</span>
+        </div>
+        <button class="flecha" onclick="diapositivaSiguiente()">➡️</button>
+    </div>
+
+</div>
+
+<script>
+    let diapositivaActual = 0;
+    const diapositivas = document.querySelectorAll('.diapositiva');
+    const totalDiapositivas = diapositivas.length;
+
+    document.getElementById('total-diapositivas').textContent = totalDiapositivas;
+
+    function mostrarDiapositiva(n) {
+        diapositivas.forEach(d => d.classList.remove('activa'));
+        diapositivas[diapositivaActual].classList.add('activa');
+        document.getElementById('diapositiva-actual').textContent = diapositivaActual + 1;
+    }
+
+    function diapositivaSiguiente() {
+        if (diapositivaActual < totalDiapositivas - 1) {
+            diapositivaActual++;
+            mostrarDiapositiva(diapositivaActual);
+        }
+    }
+
+    function diapositivaAnterior() {
+        if (diapositivaActual > 0) {
+            diapositivaActual--;
+            mostrarDiapositiva(diapositivaActual);
+        }
+    }
+
+    // Navegación con teclado
+    document.addEventListener('keydown', function(event) {
+        if (event.key === 'ArrowRight') diapositivaSiguiente();
+        if (event.key === 'ArrowLeft') diapositivaAnterior();
+    });
+
+    // ACTIVIDADES CON RETROALIMENTACIÓN
+
+    function verificarRespuesta(event, numActividad, tipo) {
+        event.target.classList.add('seleccionada');
+        const feedback = document.getElementById(`feedback-act${numActividad}`);
+        const titulo = document.getElementById(`titulo-feedback-act${numActividad}`);
+        const texto = document.getElementById(`texto-feedback-act${numActividad}`);
+
+        if (tipo === 'correcta') {
+            feedback.className = 'retroalimentacion visible correcta';
+            titulo.textContent = '✓ ¡Excelente respuesta!';
+            texto.textContent = 'Así es. La equidad reconoce nuestras diferencias y da a cada uno lo que necesita, mientras que la igualdad da lo mismo a todos.';
+        } else {
+            feedback.className = 'retroalimentacion visible incorrecta';
+            titulo.textContent = '✗ Esta no es la respuesta correcta';
+            texto.textContent = 'La equidad es dar a cada persona lo que necesita, aunque no sea lo mismo para todos. Piensa nuevamente y vuelve a intentar.';
+        }
+    }
+
+    function reintentar(numActividad) {
+        const opciones = document.querySelectorAll(`#feedback-act${numActividad}`).parentElement?.querySelectorAll('.opcion-actividad');
+        if (opciones) {
+            opciones.forEach(o => o.classList.remove('seleccionada'));
+        }
+        document.getElementById(`feedback-act${numActividad}`).classList.remove('visible');
+    }
+
+    function verificarClasificacion(event, numPregunta, respuesta) {
+        event.target.classList.add('seleccionada');
+        const feedback = document.getElementById(`feedback-clas${numPregunta}`);
+
+        const respuestasCorrectas = {
+            1: 'solidaridad',
+            2: 'tolerancia',
+            3: 'equidad'
+        };
+
+        if (respuesta === respuestasCorrectas[numPregunta]) {
+            feedback.className = 'retroalimentacion visible correcta';
+            feedback.innerHTML = '<strong>✓ ¡Correcto!</strong><p>Excelente relación. Has identificado el valor adecuado.</p>';
+        } else {
+            feedback.className = 'retroalimentacion visible incorrecta';
+            feedback.innerHTML = '<strong>✗ Intenta nuevamente</strong><p>Piensa bien qué valor corresponde a esta acción. Puedes releer las definiciones en las diapositivas anteriores.</p>';
+            event.target.classList.remove('seleccionada');
+        }
+    }
+
+    function verificarSituacion(event, numSituacion, tipo) {
+        event.target.classList.add('seleccionada');
+        const feedback = document.getElementById(`feedback-sit${numSituacion}`);
+
+        if (tipo === 'correcta') {
+            feedback.className = 'retroalimentacion visible correcta';
+            feedback.innerHTML = '<strong>✓ ¡Muy bien!</strong><p>Esta es la mejor manera de actuar. Demuestras solidaridad y tolerancia al apoyar a quien lo necesita.</p>';
+        } else {
+            feedback.className = 'retroalimentacion visible incorrecta';
+            feedback.innerHTML = '<strong>✗ Esa no es la mejor opción</strong><p>Recuerda que la solidaridad, tolerancia y equidad nos invitan a apoyar a otros y valorar sus diferencias. Intenta otra respuesta.</p>';
+            event.target.classList.remove('seleccionada');
+        }
+    }
+
+    function verificarRepaso(event, pregunta, tipo) {
+        event.target.classList.add('seleccionada');
+        const feedback = document.getElementById(`feedback-${pregunta}`);
+
+        if (tipo === 'correcta') {
+            feedback.className = 'retroalimentacion visible correcta';
+            feedback.innerHTML = '<strong>✓ ¡Correcto!</strong><p>Has demostrado que comprendiste bien el tema. ¡Excelente!</p>';
+        } else {
+            feedback.className = 'retroalimentacion visible incorrecta';
+            feedback.innerHTML = '<strong>✗ Intenta nuevamente</strong><p>Revisa la definición y los conceptos clave. Puedes volver a las diapositivas anteriores si lo necesitas.</p>';
+            event.target.classList.remove('seleccionada');
+        }
+    }
+
+    function mostrarDetalles(elemento, mensaje) {
+        document.getElementById('modal-titulo').textContent = mensaje;
+        document.getElementById('modal-explorar').classList.add('visible');
+    }
+
+    function cerrarModal() {
+        document.getElementById('modal-explorar').classList.remove('visible');
+    }
+
+    // Cerrar modal si se hace clic fuera del contenido
+    window.onclick = function(event) {
+        const modal = document.getElementById('modal-explorar');
+        if (event.target == modal) {
+            modal.classList.remove('visible');
+        }
+    }
+
+    // Inicializar
+    mostrarDiapositiva(diapositivaActual);
+</script>
+
+</body>
+</html>
