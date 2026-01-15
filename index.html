@@ -579,13 +579,23 @@
             background: white;
             border: 2px dashed #28a745;
             border-radius: 8px;
-            padding: 30px;
+            padding: 12px;
             min-height: 70px;
             margin: 12px 0;
             color: #999;
-            text-align: center;
             font-style: italic;
             font-size: 14px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            resize: vertical;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        
+        .espacio-reflexion:focus {
+            outline: none;
+            border-color: #28a745;
+            box-shadow: 0 0 8px rgba(40, 167, 69, 0.3);
+            color: #333;
         }
 
         /* LISTA DE CLASIFICACIÓN */
@@ -1155,13 +1165,13 @@
         <div class="reflexion-final">
             <h3>Preguntas para reflexionar:</h3>
             <p><strong>¿Qué aprendí hoy?</strong></p>
-            <div class="espacio-reflexion">Tu respuesta aquí...</div>
+            <textarea class="espacio-reflexion" placeholder="Tu respuesta aquí..."></textarea>
             
             <p style="margin-top: 25px;"><strong>¿Cuál de los tres valores (solidaridad, equidad, tolerancia) creo que debo practicar más?</strong></p>
-            <div class="espacio-reflexion">Tu respuesta aquí...</div>
+            <textarea class="espacio-reflexion" placeholder="Tu respuesta aquí..."></textarea>
             
             <p style="margin-top: 25px;"><strong>¿Cómo puedo aplicar estos valores en mi vida diaria?</strong></p>
-            <div class="espacio-reflexion">Tu respuesta aquí...</div>
+            <textarea class="espacio-reflexion" placeholder="Tu respuesta aquí..."></textarea>
         </div>
 
         <div style="background: #e6f2ff; padding: 15px; border-radius: 8px; margin-top: 25px; text-align: center;">
